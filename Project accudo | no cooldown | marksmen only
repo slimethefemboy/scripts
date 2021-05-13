@@ -1,5 +1,5 @@
 -- this script only works with marksmen class 
--- you can try to use other classes but
+-- you can try to use other classes but they are really buggy
 local Character = game.Players.LocalPlayer.Character
 local c = game.Workspace.Camera
 local e = game.StarterPlayer.StarterCharacterScripts
