@@ -1,0 +1,9 @@
+local run = game:GetService("RunService")
+run.RenderStepped:Connect(function()
+for i,v in pairs(game.Workspace.Debris:GetChildren()) do
+ if v.Name == "DeadAmmo" or v.Name == "DeadHP" then 
+  firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+   firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+   end
+  end
+end)
