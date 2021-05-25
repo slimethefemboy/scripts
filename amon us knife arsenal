@@ -1,0 +1,11 @@
+local cam = game.Workspace.Camera
+local run = game:GetService("RunService")
+run.Stepped:Connect(function()
+for i,v in pairs(cam:GetChildren()) do
+ if v:FindFirstChild("Part") and not v:FindFirstChild("reload") then
+  v.Part.Name = "knife"
+  v.knife.MeshId = "rbxassetid://6382052801"
+  v.knife.TextureID = "rbxassetid://6382052846"
+  end
+ end
+end)
