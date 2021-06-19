@@ -1,8 +1,20 @@
+-- put in autoexec
+if game.PlaceId == 621129760 then
+repeat wait() until game.Players.LocalPlayer
+
 local run = game:GetService("RunService")
 local plrs = game:GetService("Players")
 local lp = plrs.LocalPlayer
+local teleport = game:GetService("TeleportService")
 
+-- rejoin if kicked
+game.CoreGui.RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+ if child.Name == "ErrorPrompt" then 
+  teleport:TeleportToPlaceInstance(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)    
+ end
+end)
 
+-- autofarm
 run.RenderStepped:Connect(function()
  for i,v in pairs(game.Players:GetChildren()) do
   local character = lp.Character
@@ -20,3 +32,4 @@ run.RenderStepped:Connect(function()
  end
 end
 end)
+end
