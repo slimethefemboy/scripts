@@ -3,4 +3,4 @@ time_until_start = 20,
 speed = 4
 }
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/slimethefemboy/scripts/main/da%20hood%20autofarm%20(don't%20use)'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/slimethefemboy/scripts/main/da%20hood%20autofarm%20dont%20use'))()
