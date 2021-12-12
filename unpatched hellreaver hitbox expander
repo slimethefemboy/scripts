@@ -18,7 +18,7 @@ __index = hookmetamethod(game,'__index',function(Noahh,Canyon)
     end
     return __index(Noahh,Canyon)
 end)
-
+pcall(function()
 run.RenderStepped:Connect(function()
     for i,v in pairs(game.Players:GetChildren()) do
         if v.Name ~= plr.Name  then
@@ -26,5 +26,6 @@ run.RenderStepped:Connect(function()
             v.Character.Hitbox.Transparency = t
             v.Character.Hitbox.CanCollide = false
         end
-    end
+     end
+  end)
 end)
