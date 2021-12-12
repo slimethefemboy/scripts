@@ -7,7 +7,7 @@ getgenv().size = 50  -- I recommend keeping this below 50
 local __namecall
 __namecall = hookmetamethod(game,'__namecall', function(Self,...)
     if not checkcaller() and Self == plr and getnamecallmethod() == 'Kick' then
-        return rconsoleprint('me when clientside kicks\n')
+        return;
     end
     return __namecall(Self,...)
 end)
