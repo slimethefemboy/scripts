@@ -20,7 +20,7 @@ __index = hookmetamethod(game,'__index',function(Noahh,Canyon)
 end)
 
 run.RenderStepped:Connect(function()
-    for i,v in pairs(game.Players:GetPlayers()) do
+    for i,v in pairs(game.Players:GetChildren()) do
         if v.Name ~= plr.Name  then
             v.Character.Hitbox.Size = Vector3.new(size,size,size)
             v.Character.Hitbox.Transparency = t
