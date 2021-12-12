@@ -1,9 +1,6 @@
 local plr = game:GetService("Players").LocalPlayer
 local run = game:GetService("RunService")
 
-getgenv().t = 0.77 -- default
-getgenv().size = 50  -- I recommend keeping this below 50
-
 local __namecall
 __namecall = hookmetamethod(game,'__namecall', function(Self,...)
     if not checkcaller() and Self == plr and getnamecallmethod() == 'Kick' then
