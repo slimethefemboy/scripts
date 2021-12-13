@@ -1,4 +1,3 @@
-local run = game:GetService('RunService').RenderStepped
 local mana = game:GetService('Players').LocalPlayer.Character.Stats.Mana
 local funny
 
@@ -9,6 +8,4 @@ funny = hookmetamethod(game,'__index', function(a,b)
     return funny(a,b)
 end)
 
-run:Connect(function()
-    mana.Value = 9e9
-end)
+mana.Value = 9e9
