@@ -41,5 +41,5 @@ Headers = {
 Body = game:GetService("HttpService"):JSONEncode(data)
     
 })
-wait(15)
+task.wait(15)
 end
