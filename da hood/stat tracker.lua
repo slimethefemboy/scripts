@@ -5,9 +5,6 @@ if not syn.request then
 end
 
 repeat wait() until game:IsLoaded()
-repeat wait() until game.Players
-repeat wait() until game.Players.LocalPlayer
-repeat wait() until game.Players.LocalPlayer.Character
 
 
   
