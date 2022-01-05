@@ -1,3 +1,4 @@
+-- this contains a list of active mods and potential mods
 local mods = {
 151239872,
 167825083,
