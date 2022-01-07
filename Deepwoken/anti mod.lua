@@ -1,7 +1,6 @@
 local plrs = game:GetService('Players')
 local lp = plrs.LocalPlayer
 local mods = {
-2998077478,
 151239872,
 167825083,
 17126105,
