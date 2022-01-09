@@ -1,1 +1,1 @@
-local retard = {}
+local retard = {'babyhamsta'}
