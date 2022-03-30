@@ -35,7 +35,6 @@ old = hookmetamethod(game,'__namecall',function(Self,...)
 end)
 
 a:Button("aimlock (right click)",function()
--- da hood aimlock.lua
 local Camera = game:GetService("Workspace").CurrentCamera
 local LPlayer = game:GetService("Players").LocalPlayer
 local uis = game:GetService('UserInputService')
