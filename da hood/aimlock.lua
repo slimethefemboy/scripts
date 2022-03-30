@@ -6,19 +6,21 @@
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local aimlock = library:CreateWindow('walmart hood')
 local teleports = library:CreateWindow('Teleports')
+local character = library:CreateWindow('character')
 local misc = library:CreateWindow('Misc')
 
 
 local things ={'CHECKER_1','TeleportDetect','OneMoreTime'};
 local run = game:GetService('RunService')
 local pos
-local speed = 2 -- dont go over 10
+local speed = 3 -- dont go over 10
 local aimthing
 local prediction
 
 local a = aimlock:CreateFolder('aimlock')
 local t = teleports:CreateFolder('locations')
 local m = misc:CreateFolder('Misc')
+local c = character:CreateFolder('LocalPlayer')
 
 local old
 old = hookmetamethod(game,'__namecall',function(Self,...)
@@ -110,7 +112,7 @@ t:Button("da theatre (pvp area)",function()
     game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1004.85553, 80.3063126, -219.818954, 0.943748295, 1.34846009e-10, 0.330664784, 5.79195358e-10, 1, -2.06088058e-09, -0.330664784, 2.13647211e-09, 0.943748295)
 end)
 
-m:Toggle("WalkSpeed",function(bool)
+c:Toggle("WalkSpeed",function(bool)
     if bool == true then 
         getgenv().hello = run.Heartbeat:Connect(function()
             game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame + game:GetService('Players').LocalPlayer.Character.Humanoid.MoveDirection * speed
