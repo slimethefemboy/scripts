@@ -13,12 +13,13 @@ local misc = library:CreateWindow('Misc')
 local things ={'CHECKER_1','TeleportDetect','OneMoreTime'};
 local run = game:GetService('RunService')
 local pos
-local speed = 3 -- dont go over 10
+local speed = 2 -- dont go over 10
 local aimthing
 local prediction
 
 local a = aimlock:CreateFolder('aimlock')
 local t = teleports:CreateFolder('locations')
+local p = teleports:CreateFolder('players')
 local m = misc:CreateFolder('Misc')
 local c = character:CreateFolder('LocalPlayer')
 
@@ -35,7 +36,8 @@ old = hookmetamethod(game,'__namecall',function(Self,...)
 end)
 
 a:Button("aimlock (right click)",function()
-local Camera = game:GetService("Workspace").CurrentCamera
+-- da hood aimlock.lua
+getgenv().Camera = game:GetService("Workspace").CurrentCamera
 local LPlayer = game:GetService("Players").LocalPlayer
 local uis = game:GetService('UserInputService')
 local run = game:GetService('RunService')
@@ -119,6 +121,23 @@ c:Toggle("WalkSpeed",function(bool)
         elseif bool == false then 
     hello:Disconnect()
   end
+end)
+
+p:Box("plr tp \n(type full name)","string",function(value)
+    pcall(function()
+        game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players')[value].Character.HumanoidRootPart.CFrame * CFrame.new(0,5,0)
+    end)
+end)
+local cam = workspace.CurrentCamera
+
+p:Box("view player \n(type full name)","string",function(value)
+    pcall(function()
+        cam.CameraSubject = game:GetService('Players')[value].Character.Humanoid
+    end)
+end)
+
+p:Button("unview plr",function()
+    cam.CameraSubject = game:GetService('Players').LocalPlayer.Character.Humanoid
 end)
 
 m:Button("unlock chat",function()
