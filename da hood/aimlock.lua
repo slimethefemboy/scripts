@@ -4,13 +4,21 @@
 -- if you need further help or find any bugs dm Slime#1337
 -- also if you want good settings based on ping join https://discord.gg/ZspjDDxyzp
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
-local w = library:CreateWindow('walmart hood')
+local aimlock = library:CreateWindow('walmart hood')
+local teleports = library:CreateWindow('Teleports')
+local misc = library:CreateWindow('Misc')
+
+
 local things ={'CHECKER_1','TeleportDetect','OneMoreTime'};
 local run = game:GetService('RunService')
 local pos
 local speed = 2 -- dont go over 10
 local aimthing
 local prediction
+
+local a = aimlock:CreateFolder('aimlock')
+local t = teleports:CreateFolder('locations')
+local m = misc:CreateFolder('Misc')
 
 local old
 old = hookmetamethod(game,'__namecall',function(Self,...)
@@ -24,11 +32,7 @@ old = hookmetamethod(game,'__namecall',function(Self,...)
     return old(Self,...)
 end)
 
-local b = w:CreateFolder('Aimlock')
-local t = w:CreateFolder('Teleports')
-local m = w:CreateFolder('Misc')
-
-b:Button("aimlock (right click)",function()
+a:Button("aimlock (right click)",function()
 -- da hood aimlock.lua
 local Camera = game:GetService("Workspace").CurrentCamera
 local LPlayer = game:GetService("Players").LocalPlayer
@@ -73,11 +77,11 @@ uis.InputEnded:Connect(function(key)
 end)
 end)
 
-b:Box("prediction","number",function(value)
+a:Box("prediction","number",function(value)
     prediction = value
 end)
 
-b:Dropdown("target",{"Head","HumanoidRootPart"},true,function(mob)
+a:Dropdown("target",{"Head","HumanoidRootPart"},true,function(mob)
     aimthing = mob
 end)
 
