@@ -1,8 +1,10 @@
+-- WARNING THIS IS A WIP AND I'M PLANNING ON MAKING THIS SHITTY CODE LOOK BETTER (one day)
+-- credits to stefanuk12 for helping with crash part and part of the silent aim <3
 -- tips: 
 -- 1. aim on ground or near torso if you're locking onto someone close to you
 -- 2. right click to lock onto people 
 -- if you need further help or find any bugs dm Slime#1337
--- also if you want good settings based on ping join https://discord.gg/ZspjDDxyzp
+also if you want good settings based on ping join https://discord.gg/ZspjDDxyzp
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local aimlock = library:CreateWindow('walmart hood')
 local teleports = library:CreateWindow('Teleports')
@@ -32,7 +34,6 @@ local p = teleports:CreateFolder('players')
 local m = misc:CreateFolder('Misc')
 local c = character:CreateFolder('LocalPlayer')
 
--- credits to mr stefaunkeduk for helping with the crash part
 local old
 old = hookmetamethod(game,'__namecall',function(Self,...)
     local method = getnamecallmethod()
@@ -46,7 +47,6 @@ old = hookmetamethod(game,'__namecall',function(Self,...)
 end)
 
 a:Button("aimlock (right click)",function()
--- da hood aimlock.lua
 -- NOT MINE CREDITS HERE --> https://v3rmillion.net/showthread.php?tid=1104739
 local function GetClosestPlayer()
     local ClosestDistance, ClosestPlayer = math.huge, nil;
@@ -114,7 +114,6 @@ local function GetClosestPlayer()
     return ClosestPlayer, ClosestDistance
 end
 
--- also this
 local MouseIndexes = {"Hit", "Target"}
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
