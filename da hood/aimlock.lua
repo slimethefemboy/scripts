@@ -4,7 +4,7 @@
 -- 1. aim on ground or near torso if you're locking onto someone close to you
 -- 2. right click to lock onto people 
 -- if you need further help or find any bugs dm Slime#1337
-also if you want good settings based on ping join https://discord.gg/ZspjDDxyzp
+-- also if you want good settings based on ping join https://discord.gg/ZspjDDxyzp
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local aimlock = library:CreateWindow('walmart hood')
 local teleports = library:CreateWindow('Teleports')
