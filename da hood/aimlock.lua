@@ -16,8 +16,17 @@ local pos
 local speed = 2 -- dont go over 10
 local aimthing
 local prediction
+local aimthing2
+local prediction2
+local Camera = game:GetService("Workspace").CurrentCamera
+local LPlayer = game:GetService("Players").LocalPlayer
+local uis = game:GetService('UserInputService')
+local run = game:GetService('RunService')
+local LMouse = LPlayer:GetMouse()
+
 
 local a = aimlock:CreateFolder('aimlock')
+local s = aimlock:CreateFolder('silent aim')
 local t = teleports:CreateFolder('locations')
 local p = teleports:CreateFolder('players')
 local m = misc:CreateFolder('Misc')
@@ -37,12 +46,6 @@ end)
 
 a:Button("aimlock (right click)",function()
 -- da hood aimlock.lua
-getgenv().Camera = game:GetService("Workspace").CurrentCamera
-local LPlayer = game:GetService("Players").LocalPlayer
-local uis = game:GetService('UserInputService')
-local run = game:GetService('RunService')
-local LMouse = LPlayer:GetMouse()
-
 -- NOT MINE CREDITS HERE --> https://v3rmillion.net/showthread.php?tid=1104739
 local function GetClosestPlayer()
     local ClosestDistance, ClosestPlayer = math.huge, nil;
@@ -87,6 +90,48 @@ end)
 a:Dropdown("target",{"Head","HumanoidRootPart"},true,function(mob)
     aimthing = mob
 end)
+
+s:Button("silent aim",function()
+-- NOT MINE CREDITS HERE --> https://v3rmillion.net/showthread.php?tid=1104739
+local function GetClosestPlayer()
+    local ClosestDistance, ClosestPlayer = math.huge, nil;
+    for _,Player in next, game:GetService("Players"):GetPlayers() do
+        if Player ~= LPlayer and Player.Character.BodyEffects["K.O"].Value ~= true then
+            local Character = Player.Character
+            if Character and Character.Humanoid.Health > 1 then
+                local ScreenPosition, IsVisibleOnViewPort = Camera:WorldToViewportPoint(Character.HumanoidRootPart.Position)
+                if IsVisibleOnViewPort then
+                    local MDistance = (Vector2.new(LMouse.X, LMouse.Y) - Vector2.new(ScreenPosition.X, ScreenPosition.Y)).Magnitude
+                    if MDistance < ClosestDistance then
+                        ClosestPlayer = Player
+                        ClosestDistance = MDistance
+                    end
+                end
+            end
+        end
+    end
+    return ClosestPlayer, ClosestDistance
+end
+
+local MouseIndexes = {"Hit", "Target"}
+local __index
+__index = hookmetamethod(game, "__index", function(t, k)
+    if (not checkcaller() and t:IsA("Mouse") and table.find(MouseIndexes, k)) then
+        local TargetPart = GetClosestPlayer().Character[aimthing2]
+        local predict = TargetPart.CFrame + TargetPart.Velocity * prediction2
+        return (k == "Hit" and predict or TargetPart) 
+    end
+    return __index(t, k)
+end)
+end)
+s:Box("prediction","number",function(value)
+    prediction2 = value
+end)
+
+s:Dropdown("target",{"Head","HumanoidRootPart"},true,function(mob)
+    aimthing2 = mob
+end)
+
 
 t:Button("guns 1",function()
     game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.432983, 22.7864952, -735.774841, -0.141236693, -4.57313405e-08, -0.98997587, -2.96320337e-08, 1, -4.19668922e-08, 0.98997587, 2.34077326e-08, -0.141236693)
@@ -144,3 +189,4 @@ m:Button("unlock chat",function()
     game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame.Visible = true
     game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Position = UDim2.new(0, 0, 1, -45)
 end)
+
