@@ -32,6 +32,7 @@ local p = teleports:CreateFolder('players')
 local m = misc:CreateFolder('Misc')
 local c = character:CreateFolder('LocalPlayer')
 
+-- credits to mr stefaunkeduk for helping with the crash part
 local old
 old = hookmetamethod(game,'__namecall',function(Self,...)
     local method = getnamecallmethod()
@@ -113,6 +114,7 @@ local function GetClosestPlayer()
     return ClosestPlayer, ClosestDistance
 end
 
+-- also this
 local MouseIndexes = {"Hit", "Target"}
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
