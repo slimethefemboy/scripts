@@ -1,10 +1,3 @@
--- WARNING THIS IS A WIP AND I'M PLANNING ON MAKING THIS SHITTY CODE LOOK BETTER (one day)
--- credits to stefanuk12 for helping with crash part and part of the silent aim <3
--- tips: 
--- 1. aim on ground or near torso if you're locking onto someone close to you
--- 2. right click to lock onto people 
--- if you need further help or find any bugs dm Slime#1337
--- also if you want good settings based on ping join https://discord.gg/ZspjDDxyzp
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local aimlock = library:CreateWindow('walmart hood')
 local teleports = library:CreateWindow('Teleports')
@@ -47,6 +40,7 @@ old = hookmetamethod(game,'__namecall',function(Self,...)
 end)
 
 a:Button("aimlock (right click)",function()
+-- da hood aimlock.lua
 -- NOT MINE CREDITS HERE --> https://v3rmillion.net/showthread.php?tid=1104739
 local function GetClosestPlayer()
     local ClosestDistance, ClosestPlayer = math.huge, nil;
@@ -72,7 +66,7 @@ uis.InputBegan:Connect(function(key)
     if key.UserInputType == Enum.UserInputType.MouseButton2 and GetClosestPlayer().Character then 
     local target = GetClosestPlayer().Character[aimthing]
         getgenv().loop = run.Stepped:Connect(function()
-            Camera.CFrame = CFrame.new(Camera.CFrame.Position,target.Position + target.Velocity * prediction)
+            Camera.CFrame = CFrame.new(Camera.CFrame.Position,target.Position + target.Velocity / prediction)
         end)
     end
 end)
@@ -119,7 +113,7 @@ local __index
 __index = hookmetamethod(game, "__index", function(t, k)
     if (not checkcaller() and t:IsA("Mouse") and table.find(MouseIndexes, k)) then
         local TargetPart = GetClosestPlayer().Character[aimthing2]
-        local predict = TargetPart.CFrame + TargetPart.Velocity * prediction2
+        local predict = TargetPart.CFrame + TargetPart.Velocity / prediction2
         return (k == "Hit" and predict or TargetPart) 
     end
     return __index(t, k)
