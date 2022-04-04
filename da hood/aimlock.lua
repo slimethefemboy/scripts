@@ -1,3 +1,6 @@
+-- this is a wip so it probably won't be as good as you expect it to be 
+-- will update shitty code one day 
+-- also thanks for stefanuk12 for help with some parts
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local aimlock = library:CreateWindow('walmart hood')
 local teleports = library:CreateWindow('Teleports')
@@ -8,7 +11,6 @@ local misc = library:CreateWindow('Misc')
 local things ={'CHECKER_1','TeleportDetect','OneMoreTime'};
 local run = game:GetService('RunService')
 local pos
-local speed = 2 -- dont go over 10
 local aimthing
 local prediction
 local aimthing2
@@ -156,7 +158,7 @@ end)
 c:Toggle("WalkSpeed",function(bool)
     if bool == true then 
         getgenv().hello = run.Heartbeat:Connect(function()
-            game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame + game:GetService('Players').LocalPlayer.Character.Humanoid.MoveDirection * speed
+            game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame + game:GetService('Players').LocalPlayer.Character.Humanoid.MoveDirection * 3
             end) 
         elseif bool == false then 
     hello:Disconnect()
