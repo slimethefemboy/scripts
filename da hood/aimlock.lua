@@ -11,6 +11,7 @@ local misc = library:CreateWindow('Misc')
 local things ={'CHECKER_1','TeleportDetect','OneMoreTime'};
 local run = game:GetService('RunService')
 local pos
+local speed = 2 -- dont go over 10
 local aimthing
 local prediction
 local aimthing2
@@ -158,7 +159,7 @@ end)
 c:Toggle("WalkSpeed",function(bool)
     if bool == true then 
         getgenv().hello = run.Heartbeat:Connect(function()
-            game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame + game:GetService('Players').LocalPlayer.Character.Humanoid.MoveDirection * 3
+            game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame + game:GetService('Players').LocalPlayer.Character.Humanoid.MoveDirection * speed
             end) 
         elseif bool == false then 
     hello:Disconnect()
@@ -170,16 +171,18 @@ p:Box("plr tp \n(type full name)","string",function(value)
         game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players')[value].Character.HumanoidRootPart.CFrame * CFrame.new(0,5,0)
     end)
 end)
-local cam = workspace.CurrentCamera
+
 
 p:Box("view player \n(type full name)","string",function(value)
     pcall(function()
-        cam.CameraSubject = game:GetService('Players')[value].Character.Humanoid
+        Camera.CameraSubject = game:GetService('Players')[value].Character.Humanoid
     end)
 end)
 
 p:Button("unview plr",function()
-    cam.CameraSubject = game:GetService('Players').LocalPlayer.Character.Humanoid
+    pcall(function()
+        Camera.CameraSubject = game:GetService('Players').LocalPlayer.Character.Humanoid
+    end)
 end)
 
 m:Button("unlock chat",function()
