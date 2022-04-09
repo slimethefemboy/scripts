@@ -1,6 +1,3 @@
--- this is a wip so it probably won't be as good as you expect it to be 
--- will update shitty code one day 
--- also thanks for stefanuk12 for help with some parts
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local aimlock = library:CreateWindow('walmart hood')
 local teleports = library:CreateWindow('Teleports')
@@ -29,6 +26,12 @@ local t = teleports:CreateFolder('locations')
 local p = teleports:CreateFolder('players')
 local m = misc:CreateFolder('Misc')
 local c = character:CreateFolder('LocalPlayer')
+
+for i,v in pairs(game.CoreGui:GetChildren()) do 
+    if v:IsA('ScreenGui') and (v:FindFirstChild('Window') or v:FindFirstChild("HiI'mSexyDon'tTouchMePls")) then 
+        v.Name = 'wallyuiv3'
+    end
+end
 
 local old
 old = hookmetamethod(game,'__namecall',function(Self,...)
@@ -85,7 +88,7 @@ a:Box("prediction","number",function(value)
     prediction = value
 end)
 
-a:Dropdown("target",{"Head","HumanoidRootPart"},true,function(mob)
+a:Dropdown("target",{"Head","HumanoidRootPart",'RightFoot','LeftFoot'},true,function(mob)
     aimthing = mob
 end)
 
@@ -126,7 +129,7 @@ s:Box("prediction","number",function(value)
     prediction2 = value
 end)
 
-s:Dropdown("target",{"Head","HumanoidRootPart"},true,function(mob)
+s:Dropdown("target",{"Head","HumanoidRootPart",'RightFoot','LeftFoot'},true,function(mob)
     aimthing2 = mob
 end)
 
@@ -190,3 +193,10 @@ m:Button("unlock chat",function()
     game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Position = UDim2.new(0, 0, 1, -45)
 end)
 
+m:Bind("toggle gui (Z)",Enum.KeyCode.Z,function() --Default bind
+    if game.CoreGui:FindFirstChild('wallyuiv3') then
+        game.CoreGui:WaitForChild('wallyuiv3').Parent = game.Teams
+            else 
+        game.Teams:WaitForChild('wallyuiv3').Parent = game.CoreGui
+    end
+end)
