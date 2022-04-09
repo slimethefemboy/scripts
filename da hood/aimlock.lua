@@ -193,7 +193,7 @@ m:Button("unlock chat",function()
     game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Position = UDim2.new(0, 0, 1, -45)
 end)
 
-m:Bind("toggle gui (Z)",Enum.KeyCode.Z,function() --Default bind
+m:Bind("toggle gui",Enum.KeyCode.Z,function() --Default bind
     if game.CoreGui:FindFirstChild('wallyuiv3') then
         game.CoreGui:WaitForChild('wallyuiv3').Parent = game.Teams
             else 
