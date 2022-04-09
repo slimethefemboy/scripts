@@ -8,7 +8,7 @@ local misc = library:CreateWindow('Misc')
 local things ={'CHECKER_1','TeleportDetect','OneMoreTime'};
 local run = game:GetService('RunService')
 local pos
-local speed = 2 -- dont go over 10
+local speed
 local aimthing
 local prediction
 local aimthing2
@@ -159,7 +159,7 @@ t:Button("da theatre (pvp area)",function()
     game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1004.85553, 80.3063126, -219.818954, 0.943748295, 1.34846009e-10, 0.330664784, 5.79195358e-10, 1, -2.06088058e-09, -0.330664784, 2.13647211e-09, 0.943748295)
 end)
 
-c:Toggle("WalkSpeed",function(bool)
+c:Toggle("cframe walkspeed",function(bool)
     if bool == true then 
         getgenv().hello = run.Heartbeat:Connect(function()
             game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame + game:GetService('Players').LocalPlayer.Character.Humanoid.MoveDirection * speed
@@ -169,12 +169,19 @@ c:Toggle("WalkSpeed",function(bool)
   end
 end)
 
+c:Slider("speed slider",{
+    min = 0; -- min value of the slider
+    max = 5; -- max value of the slider
+    precise = true; -- max 2 decimals
+},function(value)
+    speed = value
+end)
+
 p:Box("plr tp \n(type full name)","string",function(value)
     pcall(function()
         game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService('Players')[value].Character.HumanoidRootPart.CFrame * CFrame.new(0,5,0)
     end)
 end)
-
 
 p:Box("view player \n(type full name)","string",function(value)
     pcall(function()
@@ -193,7 +200,7 @@ m:Button("unlock chat",function()
     game:GetService('Players').LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Position = UDim2.new(0, 0, 1, -45)
 end)
 
-m:Bind("toggle gui",Enum.KeyCode.Z,function() --Default bind
+m:Bind("toggle gui (Z)",Enum.KeyCode.Z,function() --Default bind
     if game.CoreGui:FindFirstChild('wallyuiv3') then
         game.CoreGui:WaitForChild('wallyuiv3').Parent = game.Teams
             else 
