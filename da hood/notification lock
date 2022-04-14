@@ -1,0 +1,72 @@
+getgenv().settings = {
+    aimthing = 'Head',
+    prediction = 6.57,-- best for low ping 
+    Key = 'Q'
+}
+
+local enabled = false
+local pickedplayer
+local LPlayer = game:GetService("Players").LocalPlayer
+local LMouse = LPlayer:GetMouse()
+local Camera = game:GetService("Workspace").CurrentCamera
+local StarterGui = game:GetService("StarterGui")
+local UserInputService = game:GetService('UserInputService')
+
+-- NOT MINE CREDITS HERE --> https://v3rmillion.net/showthread.php?tid=1104739 <--
+local function GetClosestPlayer()
+    local ClosestDistance, ClosestPlayer = math.huge, nil;
+    for _,Player in next, game:GetService("Players"):GetPlayers() do
+        if Player ~= LPlayer and Player.Character.BodyEffects["K.O"].Value ~= true then
+            local Character = Player.Character
+            if Character and Character.Humanoid.Health > 1 then
+                local ScreenPosition, IsVisibleOnViewPort = Camera:WorldToViewportPoint(Character.HumanoidRootPart.Position)
+                if IsVisibleOnViewPort then
+                    local MDistance = (Vector2.new(LMouse.X, LMouse.Y) - Vector2.new(ScreenPosition.X, ScreenPosition.Y)).Magnitude
+                    if MDistance < ClosestDistance then
+                        ClosestPlayer = Player
+                        ClosestDistance = MDistance
+                    end
+                end
+            end
+        end
+    end
+    return ClosestPlayer, ClosestDistance
+end
+
+UserInputService.InputBegan:Connect(function(Key)
+    if Key.KeyCode == Enum.KeyCode[settings.Key] then 
+        if enabled then         
+        enabled = false 
+        StarterGui:SetCore("SendNotification", {
+	       Title = "walmart hood lock";
+	       Text =  'unlocked'
+         })
+    else
+            enabled = true 
+            pickedplayer = GetClosestPlayer()
+            if pickedplayer and pickedplayer.Character and pickedplayer.Character[settings.aimthing] then
+            StarterGui:SetCore("SendNotification", {
+	            Title = "walmart hood lock";
+	            Text = 'Target: ' .. tostring(pickedplayer.Name) .. '\n Display name: ' .. tostring(pickedplayer.DisplayName) 
+            })
+            end
+        end
+    end
+end)
+
+
+local things = {"Hit", "Target"}
+local __index
+__index = hookmetamethod(game, "__index", function(t, k)
+    if (not checkcaller() and enabled and t:IsA("Mouse") and table.find(things, k)) then
+        local TargetPart = pickedplayer.Character[settings.aimthing]
+        local predict = TargetPart.CFrame + TargetPart.Velocity / settings.prediction
+        return (k == "Hit" and predict or TargetPart) 
+    end
+    return __index(t, k)
+end)
+
+StarterGui:SetCore("SendNotification", {
+	Title = "Silent aim loaded!";
+	Text = "made by Slime#1337 (credits to stefanuk12 for helping also)"
+})
