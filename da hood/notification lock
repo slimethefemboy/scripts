@@ -68,5 +68,5 @@ end)
 
 StarterGui:SetCore("SendNotification", {
 	Title = "Silent aim loaded!";
-	Text = "made by Slime#1337 (credits to stefanuk12 for helping also)"
+	Text = "made by Slime#1337 (credits to stefanuk12 for helping with silent also)"
 })
