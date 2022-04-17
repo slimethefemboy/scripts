@@ -11,7 +11,6 @@ end
 
 local LPH_JIT_ULTRA = function(a) return a end
 local LPH_JIT_MAX = function(a) return a end
-
 local ContextActionService = game:GetService("ContextActionService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
